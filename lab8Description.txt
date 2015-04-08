@@ -1,0 +1,77 @@
+CSC 231 Lab8 - Introduction to Prolog
+Georgina Hutchins
+03/23/15
+
+
+1. 9 New Definitions:
+
+	1) father(X,Y) is a male parent, so combine the male and parent facts. 
+
+	2) daughter(X,Y) is the female child of a parent, so if it is true that
+		object X has a parent (there exists a fact: parent(Y,X) in the database),
+		and is a female, then X is the daughter of Y.
+	
+	3) son(X,Y) is a male child (has a parent). If there exists a parent(Y,X) for 
+		object X, and X is also a male, then X is the son of Y.
+
+	4) sister(X,Y) is a female sibling, so use the siblings(X,Y) definition and check
+		the fact that X is female.
+
+	5) brother(X,Y) is a male sibling, so use the siblings definition and check
+		that male(X) is true.
+
+	6) grandfather(X,Y) has two definitions, accouting for a mother's father or a 
+		father's father. X is the grandfather of Y if X is the father of Z
+		and Z is the father of Y, or if X is the father of Z and Z is the 
+		mother of Y. 
+
+	7) aunt(X,Y) has alternate definitions, accounting for a mother's sister or
+		father's sister. If X is the sister of Z, and Z is either the mother
+		or father of Y, then X is the aunt of Y.
+
+ 	8) uncle(X,Y) has alternate definitions, accounting for a mother's brother 
+		or father's brother. If X is the brother of Z and Z is either the 
+		mother of father of Y, then X is the uncle of Y.
+
+	9) cousin(X,Y) has 4 definitions, since a cousin can be a male or female
+		child of an aunt or uncle. If X is the son/daughter of Z and
+		Z is the uncle/aunt of Y, then X is cousins with Y.
+
+2. Recursive Definitions:
+	
+	1) isnatural(X) is a recursive definition with the base case X = 0.
+		If X = 0, then use internal temporary variable Y to hold
+		the value of X-1, and recursively call isnatural(Y).
+
+	2) factorial(A,B) is a recursive definition with the base case of
+		A = 0, result B = 1. If A > 0, use temporary varibale C
+		to hold the value of A-1, recursively call factorial(C,D).
+		D will hold the result of calling factorial on A-1. Then
+		compute the result of multiplying A * D, which is really 
+		A * (A-1), and store the result in B to return.
+
+	3) Fibonacci(A,B) has the base cases A = 0,1 then B = 1. For A > 1,
+		use temp variable C to store the value of A-1, and temp variable
+		D to store the value of A-2. Recursively call fibonacci on A-1
+		and A-2 using cariables C and D and store the result in temp variables
+		E and F, respectively. Compute the sum of E and F, store in B and return.
+
+3. fulfilledCSMajor(Student) returns true or false based on if the student of interest
+	has taken all of the courses required for the BS in Computer Science.fulfilledCSMajor()
+	uses a list of facts from the definition taken(), that indicates the student of 
+	interest, and what courses they have taken so far. The function tests for the core
+	requirements in cs and math, and then uses the definition above300() to ensure that
+	the student has taken four different courses above the 300 level. Choice() is a
+	definition that lists the options for the last math requirement. If taken() for a
+	particular student returns true for one of these 3 options (math 121,205,206), then
+	choice() will return true also.
+
+
+
+
+
+
+
+
+
+
